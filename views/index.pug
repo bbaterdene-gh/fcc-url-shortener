@@ -4,10 +4,10 @@ block content
   div(class="flex flex-col text-center")
     h1(class="text-4xl mt-14") URL Shortener Microservice
     h2(class="text-2xl mt-2") Short URL Creation
-    form(class="mt-4 border-2 w-4/12 m-auto py-4 rounded")
+    form(action="/api/shorturl" method="post" class="mt-4 border-2 w-4/12 m-auto py-4 rounded shadow")
       label URL: 
       input(type="text" name="" class="border-2 border-r-2 border-red-300 mx-2")
-      button(type="submit" class="border-2 p-1 bg-blue-400 border-blue-500 text-center rounded hover:bg-blue-500 hover:text-white") POST URL
+      button(type="submit" class="px-2 py-1 bg-blue-500 text-center rounded hover:bg-blue-500 text-white") POST URL
     h2(class="text-2xl mt-8 mb-4 font-bold") Example Usage
     a(href=`${baseURL}/api/shorturl/1` class="text-blue-600 underline" target="blank") [this_project_url]/api/shorturl/1 
     h2(class="text-2xl mt-8 mb-4 font-bold") Will Redirect To
