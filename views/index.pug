@@ -1,11 +1,10 @@
 extends layout
 
 block content
-  h1 URL Shortener Microservice
-  h2 Short URL Creation
-  form
-    fieldset
-      legend URL Shortener
+  div(class="flex flex-col text-center")
+    h1(class="text-4xl mt-4") URL Shortener Microservice
+    h2(class="text-2xl mt-2") Short URL Creation
+    form(class="mt-4")
       label URL: 
-      input(type="text" name="")
-      button(type="submit") POST URL
+      input(type="text" name="" class="border-2 border-r-2 border-red-300 mx-2")
+      button(type="submit" class="border-2 p-1 bg-blue-400 border-blue-500 text-center rounded hover:bg-blue-500 hover:text-white") POST URL
