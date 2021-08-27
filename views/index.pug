@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 URL Shortener Microservice
+  h2 Short URL Creation
+  form
+    fieldset
+      legend URL Shortener
+      label URL: 
+      input(type="text" name="")
+      button(type="submit") POST URL
