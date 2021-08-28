@@ -45,8 +45,8 @@ router.post(
       // already existed
       if (short_url) {
         return res.json({
-          short_url: short_url.url_id,
           original_url: short_url.original_url,
+          short_url: short_url.url_id,
         })
       } else {
         // newly create
@@ -57,8 +57,8 @@ router.post(
           }, (err, short_url) => {
             if(err) console.error(err)
             return res.json({
-              short_url: short_url.url_id,
               original_url: short_url.original_url,
+              short_url: short_url.url_id,
             })
           })
         })
