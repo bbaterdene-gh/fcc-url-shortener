@@ -35,7 +35,7 @@ router.post(
   let protocol = (new URL(req.body.url)).protocol
 
   dns.lookup(url, (err) => {
-    if (err || protocol !== 'http:' || protocol !== 'https:' ) {
+    if (err || (protocol !== 'http:' && protocol !== 'https:') ) {
       return res.json({
         error: 'Invalid URL'
       })
