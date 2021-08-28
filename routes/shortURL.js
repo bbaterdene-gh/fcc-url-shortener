@@ -4,6 +4,7 @@ const { body } = require('express-validator')
 const dns = require('dns')
 const ShortURL = require('../models/short_url')
 const mongoose = require('mongoose')
+const { URL } = require('url')
 const db = mongoose.collections
 
 /* GET home page. */
@@ -30,9 +31,7 @@ router.post(
   '/shorturl',
   body('url').trim(),
   (req, res, next) => {
-  let url = req.body.url
-  url = url.replace(/^https?:\/\//, '')
-  url = url.replace(/\/$/, '')
+  let url = (new URL(req.body.url)).hostname
 
   dns.lookup(url, (err) => {
     if (err) {
