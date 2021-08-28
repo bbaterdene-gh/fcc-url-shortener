@@ -7,6 +7,7 @@ const logger = require('morgan')
 const mongoose = require('mongoose')
 const compression = require('compression')
 const helmet = require('helmet')
+const cors = require('cors')
 
 // create app
 const app = express()
@@ -23,6 +24,7 @@ app.set('view engine', 'pug')
 // middlewares
 app.use(helmet())
 app.use(compression())
+app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
