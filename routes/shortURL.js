@@ -8,8 +8,22 @@ const db = mongoose.collections
 
 /* GET home page. */
 router.get('/shorturl/:url_id', (req, res, next) => {
-  res.locals.baseURL = req.baseUrl
-  res.render('index')
+  const { url_id } = req.params
+
+  if (!url_id) {
+    res.status(404)
+    return res.send('Not Found')
+  }
+
+  ShortURL.findOne({ url_id: url_id }).exec((err, short_url) => {
+    if (err || !short_url) {
+      return res.json({
+        error: "No short URL found for the given input"
+      })
+    }
+
+    res.redirect(short_url.original_url)
+  })
 })
 
 router.post(
