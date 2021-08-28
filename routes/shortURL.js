@@ -32,9 +32,10 @@ router.post(
   body('url').trim(),
   (req, res, next) => {
   let url = (new URL(req.body.url)).hostname
+  let protocol = (new URL(req.body.url)).protocol
 
   dns.lookup(url, (err) => {
-    if (err) {
+    if (err || protocol !== 'http:' || protocol !== 'https:' ) {
       return res.json({
         error: 'Invalid URL'
       })
