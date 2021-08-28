@@ -5,10 +5,15 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const mongoose = require('mongoose')
+const compression = require('compression')
+const helmet = require('helmet')
 
 // create app
 const app = express()
-mongoose.connect('mongodb+srv://admin:2ltsXICcgTNRPL0u@url-shortener.jynjf.mongodb.net/url-shortener?retryWrites=true&w=majority',  { useNewUrlParser: true , useUnifiedTopology: true })
+const dev_db_url = 'mongodb+srv://admin:2ltsXICcgTNRPL0u@url-shortener.jynjf.mongodb.net/url-shortener?retryWrites=true&w=majority'
+const mongodb_url = process.env.MONGODB_URI || dev_db_url
+
+mongoose.connect(mongodb_url,  { useNewUrlParser: true , useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 // view engine setup
@@ -16,6 +21,8 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 // middlewares
+app.use(helmet())
+app.use(compression())
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
